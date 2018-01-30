@@ -38,6 +38,7 @@ namespace Xamarin.Forms.Platform.UWP
 				}
 
 				UpdateContent();
+				UpdateAlignment();
 
 				if (Element.BackgroundColor != Color.Default)
 					UpdateBackground();
@@ -103,6 +104,11 @@ namespace Xamarin.Forms.Platform.UWP
 			{
 				UpdateBorderRadius();
 			}
+			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
+					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
+			{
+				UpdateAlignment();
+			}
 		}
 
 		protected override void UpdateBackgroundColor()
@@ -124,6 +130,12 @@ namespace Xamarin.Forms.Platform.UWP
 		void OnPointerPressed(object sender, RoutedEventArgs e)
 		{
 			((IButtonController)Element)?.SendPressed();
+		}
+
+		void UpdateAlignment()
+		{
+			Control.HorizontalContentAlignment = Element.HorizontalTextAlignment.ToNativeHorizontalAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
+			Control.VerticalContentAlignment = Element.VerticalTextAlignment.ToNativeVerticalAlignment();
 		}
 
 		void UpdateBackground()

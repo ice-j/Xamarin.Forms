@@ -23,6 +23,10 @@ namespace Xamarin.Forms
 
 		public static readonly BindableProperty TextColorProperty = TextElement.TextColorProperty;
 
+		public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create("HorizontalTextAlignment", typeof(TextAlignment), typeof(Button), TextAlignment.Center);
+
+		public static readonly BindableProperty VerticalTextAlignmentProperty = BindableProperty.Create("VerticalTextAlignment", typeof(TextAlignment), typeof(Button), TextAlignment.Center);
+
 		public static readonly BindableProperty FontProperty = FontElement.FontProperty;
 
 		public static readonly BindableProperty FontFamilyProperty = FontElement.FontFamilyProperty;
@@ -103,6 +107,18 @@ namespace Xamarin.Forms
 		{
 			get { return (Color)GetValue(TextElement.TextColorProperty); }
 			set { SetValue(TextElement.TextColorProperty, value); }
+		}
+
+		public TextAlignment HorizontalTextAlignment
+		{
+			get { return (TextAlignment)GetValue(HorizontalTextAlignmentProperty); }
+			set { SetValue(HorizontalTextAlignmentProperty, value); }
+		}
+
+		public TextAlignment VerticalTextAlignment
+		{
+			get { return (TextAlignment)GetValue(VerticalTextAlignmentProperty); }
+			set { SetValue(VerticalTextAlignmentProperty, value); }
 		}
 
 		bool IsEnabledCore

@@ -145,6 +145,9 @@ namespace Xamarin.Forms.Platform.Android
 				UpdateBitmap();
 			else if (e.PropertyName == VisualElement.IsVisibleProperty.PropertyName)
 				UpdateText();
+			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName || 
+					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
+				UpdateTextGravity();
 
 			if (_drawableEnabled &&
 				(e.PropertyName == VisualElement.BackgroundColorProperty.PropertyName || e.PropertyName == Button.BorderColorProperty.PropertyName || e.PropertyName == Button.BorderRadiusProperty.PropertyName ||
@@ -155,6 +158,11 @@ namespace Xamarin.Forms.Platform.Android
 			}
 
 			base.OnElementPropertyChanged(sender, e);
+		}
+
+		void UpdateTextGravity()
+		{
+			Control.Gravity = Element.HorizontalTextAlignment.ToHorizontalGravityFlags() | Element.VerticalTextAlignment.ToVerticalGravityFlags();
 		}
 
 		protected override void UpdateBackgroundColor()
@@ -170,6 +178,7 @@ namespace Xamarin.Forms.Platform.Android
 			UpdateTextColor();
 			UpdateEnabled();
 			UpdateDrawable();
+			UpdateTextGravity();
 		}
 
 		void UpdateBitmap()

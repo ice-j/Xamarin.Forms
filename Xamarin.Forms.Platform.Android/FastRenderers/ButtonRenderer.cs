@@ -248,6 +248,11 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 			{
 				UpdateTextColor();
 			}
+			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
+					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
+			{
+				UpdateTextGravity();
+			}
 			else if (e.PropertyName == VisualElement.IsEnabledProperty.PropertyName)
 			{
 				UpdateIsEnabled();
@@ -274,6 +279,11 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 			}
 
 			ElementPropertyChanged?.Invoke(this, e);
+		}
+
+		void UpdateTextGravity()
+		{
+			Gravity = Button.HorizontalTextAlignment.ToHorizontalGravityFlags() | Button.VerticalTextAlignment.ToVerticalGravityFlags();
 		}
 
 		protected override void OnLayout(bool changed, int l, int t, int r, int b)

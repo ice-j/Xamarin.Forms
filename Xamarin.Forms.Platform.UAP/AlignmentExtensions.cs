@@ -36,5 +36,19 @@ namespace Xamarin.Forms.Platform.UWP
 					return VerticalAlignment.Top;
 			}
 		}
+
+		internal static HorizontalAlignment ToNativeHorizontalAlignment(this TextAlignment alignment, EffectiveFlowDirection flowDirection = default(EffectiveFlowDirection))
+		{
+			var isLtr = flowDirection.IsLeftToRight();
+			switch (alignment)
+			{
+				case TextAlignment.Start:
+					return isLtr ? HorizontalAlignment.Left : HorizontalAlignment.Right;
+				case TextAlignment.End:
+					return isLtr ? HorizontalAlignment.Right : HorizontalAlignment.Left;
+				default:
+					return HorizontalAlignment.Center;
+			}
+		}
 	}
 }

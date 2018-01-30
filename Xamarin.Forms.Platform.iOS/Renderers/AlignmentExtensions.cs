@@ -24,5 +24,33 @@ namespace Xamarin.Forms.Platform.iOS
 						return UITextAlignment.Natural;
 			}
 		}
+
+
+		internal static UIControlContentHorizontalAlignment ToNativeControlContentHorizontalAlignment(this TextAlignment alignment, EffectiveFlowDirection flowDirection)
+		{
+			var isLtr = flowDirection.IsLeftToRight();
+			switch (alignment)
+			{
+				case TextAlignment.Start:
+					return isLtr ? UIControlContentHorizontalAlignment.Left : UIControlContentHorizontalAlignment.Leading;
+				case TextAlignment.End:
+					return isLtr ? UIControlContentHorizontalAlignment.Right : UIControlContentHorizontalAlignment.Left;
+				default:
+					return UIControlContentHorizontalAlignment.Center;
+			}
+		}
+
+		internal static UIControlContentVerticalAlignment ToNativeControlContentVerticalAlignment(this TextAlignment alignment)
+		{
+			switch (alignment)
+			{
+				case TextAlignment.Start:
+					return UIControlContentVerticalAlignment.Center;
+				case TextAlignment.End:
+					return UIControlContentVerticalAlignment.Bottom;
+				default:
+					return UIControlContentVerticalAlignment.Center;
+			}
+		}
 	}
 }
