@@ -73,6 +73,11 @@ namespace Xamarin.Forms.Platform.Android.AppCompat
 			return new AppCompatButton(Context);
 		}
 
+		void UpdateTextGravity()
+		{
+			Control.Gravity = Element.HorizontalTextAlignment.ToHorizontalGravityFlags(((IVisualElementController)Element).EffectiveFlowDirection) | Element.VerticalTextAlignment.ToVerticalGravityFlags();
+		}
+
 		protected override void Dispose(bool disposing)
 		{
 			if (_isDisposed)
@@ -139,6 +144,10 @@ namespace Xamarin.Forms.Platform.Android.AppCompat
 				UpdateBitmap();
 			else if (e.PropertyName == VisualElement.IsVisibleProperty.PropertyName)
 				UpdateText();
+			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
+					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
+				UpdateTextGravity();
+
 
 			base.OnElementPropertyChanged(sender, e);
 		}
@@ -193,6 +202,7 @@ namespace Xamarin.Forms.Platform.Android.AppCompat
 			UpdateBitmap();
 			UpdateTextColor();
 			UpdateEnabled();
+			UpdateTextGravity();
 		}
 
 		void UpdateBitmap()

@@ -163,8 +163,6 @@ namespace Xamarin.Forms.Platform.Android
 		void UpdateTextGravity()
 		{
 			Control.Gravity = Element.HorizontalTextAlignment.ToHorizontalGravityFlags(((IVisualElementController)Element).EffectiveFlowDirection) | Element.VerticalTextAlignment.ToVerticalGravityFlags();
-			Log.Debug("BUTTON RENDERER", $"HTA = {Element.HorizontalTextAlignment}, VTA = {Element.VerticalTextAlignment} =============================================================");
-			System.Diagnostics.Debug.WriteLine($"HTA = {Element.HorizontalTextAlignment}, VTA = {Element.VerticalTextAlignment} =============================================================");
 		}
 
 		protected override void UpdateBackgroundColor()

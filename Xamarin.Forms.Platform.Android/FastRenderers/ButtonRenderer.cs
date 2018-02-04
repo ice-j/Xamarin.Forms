@@ -283,7 +283,7 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 
 		void UpdateTextGravity()
 		{
-			Gravity = Button.HorizontalTextAlignment.ToHorizontalGravityFlags() | Button.VerticalTextAlignment.ToVerticalGravityFlags();
+			Gravity = Button.HorizontalTextAlignment.ToHorizontalGravityFlags(((IVisualElementController)Element).EffectiveFlowDirection) | Button.VerticalTextAlignment.ToVerticalGravityFlags();
 		}
 
 		protected override void OnLayout(bool changed, int l, int t, int r, int b)
