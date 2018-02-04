@@ -250,6 +250,29 @@ namespace Xamarin.Forms.Core.UnitTests
 			
 			Assert.False(invoked);
 		}
+		
+		[Test]
+		public void ButtonTextAlignmentPropertiesBindingTest()
+		{
+			var bContext = new { VerticalTextAlign = TextAlignment.End, HorizontalTextAlign = TextAlignment.End };
+			var button = new Button();
+
+			button.SetBinding(Button.VerticalTextAlignmentProperty, "VerticalTextAlign");
+			button.SetBinding(Button.HorizontalTextAlignmentProperty, "HorizontalTextAlign");
+			button.BindingContext = bContext;
+
+			Assert.AreEqual(TextAlignment.End, button.VerticalTextAlignment);
+			Assert.AreEqual(TextAlignment.End, button.HorizontalTextAlignment);
+		}
+
+		[Test]
+		public void ButtonTextAlignmentDefaultsToCenterTest()
+		{
+			var button = new Button();
+
+			Assert.AreEqual(TextAlignment.Center, button.VerticalTextAlignment);
+			Assert.AreEqual(TextAlignment.Center, button.HorizontalTextAlignment);
+		}
 
 		private void AssertButtonContentLayoutsEqual(Button.ButtonContentLayout layout1, object layout2)
 		{
