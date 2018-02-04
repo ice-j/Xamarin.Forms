@@ -91,6 +91,123 @@ namespace Xamarin.Forms.Controls
 				}
 			);
 
+			const int alignmentTestsHeightRequest = 200;
+			const int alignmentTestsWidthRequest = 400;
+
+			var xAlignCenterContainer = new ViewContainer<Button>(Test.Button.HorizontalTextAlignmentCenter,
+				new Button
+				{
+					Text = "HTA - Center",
+					HorizontalTextAlignment = TextAlignment.Center,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var xAlignEndContainer = new ViewContainer<Button>(Test.Button.HorizontalTextAlignmentEnd,
+				new Button
+				{
+					Text = "HTA - End",
+					HorizontalTextAlignment = TextAlignment.End,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var xAlignStartContainer = new ViewContainer<Button>(Test.Button.HorizontalTextAlignmentStart,
+				new Button
+				{
+					Text = "HTA - Start",
+					HorizontalTextAlignment = TextAlignment.Start,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var RTLxAlignCenterContainer = new ViewContainer<Button>(Test.Button.RTLHorizontalTextAlignmentCenter,
+				new Button
+				{
+					Text = "HTA - Center(RTL)",
+					HorizontalTextAlignment = TextAlignment.Center,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					FlowDirection = FlowDirection.RightToLeft,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var RTLxAlignEndContainer = new ViewContainer<Button>(Test.Button.RTLHorizontalTextAlignmentEnd,
+				new Button
+				{
+					Text = "HTA - End(RTL)",
+					HorizontalTextAlignment = TextAlignment.End,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					FlowDirection = FlowDirection.RightToLeft,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var RTLxAlignStartContainer = new ViewContainer<Button>(Test.Button.RTLHorizontalTextAlignmentStart,
+				new Button
+				{
+					Text = "HTA - Start(RTL)",
+					HorizontalTextAlignment = TextAlignment.Start,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					FlowDirection = FlowDirection.RightToLeft,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var yAlignCenterContainer = new ViewContainer<Button>(Test.Button.VerticalTextAlignmentCenter,
+				new Button
+				{
+					Text = "VTA - Center",
+					VerticalTextAlignment = TextAlignment.Center,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var yAlignEndContainer = new ViewContainer<Button>(Test.Button.VerticalTextAlignmentEnd,
+				new Button
+				{
+					Text = "VTA - End",
+					VerticalTextAlignment = TextAlignment.End,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+			var yAlignStartContainer = new ViewContainer<Button>(Test.Button.VerticalTextAlignmentStart,
+				new Button
+				{
+					Text = "VTA - Start",
+					VerticalTextAlignment = TextAlignment.Start,
+					HeightRequest = alignmentTestsHeightRequest,
+					WidthRequest = alignmentTestsWidthRequest,
+					BorderColor = Color.Red,
+					BorderWidth = 3
+				}
+			);
+
+
+			
+
 			Add (borderButtonContainer);
 			Add (borderRadiusContainer);
 			Add (borderWidthContainer);
@@ -100,6 +217,15 @@ namespace Xamarin.Forms.Controls
 			Add (imageContainer);
 			Add (textContainer);
 			Add (textColorContainer);
+			Add (xAlignCenterContainer);
+			Add (xAlignEndContainer);
+			Add (xAlignStartContainer);
+			Add (RTLxAlignCenterContainer);
+			Add (RTLxAlignEndContainer);
+			Add (RTLxAlignStartContainer);
+			Add (yAlignCenterContainer);
+			Add (yAlignEndContainer);
+			Add (yAlignStartContainer);
 			//stackLayout.Children.Add (textColorContainer);
 		}
 	}

@@ -38,7 +38,7 @@ namespace Xamarin.Forms.Platform.UWP
 				}
 
 				UpdateContent();
-				UpdateAlignment();
+				UpdateTextAlignment();
 
 				if (Element.BackgroundColor != Color.Default)
 					UpdateBackground();
@@ -107,7 +107,7 @@ namespace Xamarin.Forms.Platform.UWP
 			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
 					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
 			{
-				UpdateAlignment();
+				UpdateTextAlignment();
 			}
 		}
 
@@ -132,8 +132,11 @@ namespace Xamarin.Forms.Platform.UWP
 			((IButtonController)Element)?.SendPressed();
 		}
 
-		void UpdateAlignment()
+		void UpdateTextAlignment()
 		{
+			if (Element == null || Control == null)
+				return;
+
 			Control.HorizontalContentAlignment = Element.HorizontalTextAlignment.ToNativeHorizontalAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
 			Control.VerticalContentAlignment = Element.VerticalTextAlignment.ToNativeVerticalAlignment();
 		}

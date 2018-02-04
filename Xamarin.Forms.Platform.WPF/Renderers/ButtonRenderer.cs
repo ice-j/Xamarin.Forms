@@ -36,6 +36,7 @@ namespace Xamarin.Forms.Platform.WPF
 					UpdateBorderWidth();
 
 				UpdateFont();
+				UpdateTextAlignment();
 			}
 
 			base.OnElementChanged(e);
@@ -55,6 +56,9 @@ namespace Xamarin.Forms.Platform.WPF
 				UpdateBorderColor();
 			else if (e.PropertyName == Button.BorderWidthProperty.PropertyName)
 				UpdateBorderWidth();
+			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
+					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
+				UpdateTextAlignment();
 		}
 
 		void HandleButtonClick(object sender, RoutedEventArgs e)
@@ -161,6 +165,15 @@ namespace Xamarin.Forms.Platform.WPF
 		void UpdateTextColor()
 		{
 			Control.UpdateDependencyColor(WButton.ForegroundProperty, Element.TextColor);
+		}
+
+		void UpdateTextAlignment()
+		{
+			if (Element == null || Control == null)
+				return;
+			
+			Control.HorizontalContentAlignment = Element.HorizontalTextAlignment.ToNativeHorizontalAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
+			Control.VerticalContentAlignment = Element.VerticalTextAlignment.ToNativeVerticalAlignment();
 		}
 
 		bool _isDisposed;

@@ -79,7 +79,7 @@ namespace Xamarin.Forms.Platform.iOS
 				UpdateBorder();
 				UpdateImage();
 				UpdateTextColor();
-				UpdateAlignment();
+				UpdateTextAlignment();
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace Xamarin.Forms.Platform.iOS
 				UpdateImage();
 			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
 					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
-				UpdateAlignment();
+				UpdateTextAlignment();
 		}
     
 		protected override void SetAccessibilityLabel()
@@ -224,10 +224,13 @@ namespace Xamarin.Forms.Platform.iOS
 			}
 		}
 
-		void UpdateAlignment()
+		void UpdateTextAlignment()
 		{
+			if (Element == null || Control == null)
+				return;
+
 			Control.HorizontalAlignment = Element.HorizontalTextAlignment.ToNativeControlContentHorizontalAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
-			Control.VerticalAlignment = Element.HorizontalTextAlignment.ToNativeControlContentVerticalAlignment();
+			Control.VerticalAlignment = Element.VerticalTextAlignment.ToNativeControlContentVerticalAlignment();
 		}
 
 		void ClearEdgeInsets(UIButton button)

@@ -9,8 +9,9 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
     public class ButtonRenderer : ViewRenderer<Button, ImageButton>
     {
         private const uint DefaultBorderWidth = 1;
+		private const float AlignStart = 0f, AlignEnd = 1f, AlignCenter = 0.5f;
 
-        protected override bool PreventGestureBubbling { get; set; } = true;
+		protected override bool PreventGestureBubbling { get; set; } = true;
 
         protected override void Dispose(bool disposing)
         {
@@ -45,6 +46,7 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
                 UpdateText();
                 UpdateBorder();
                 UpdateContent();
+				UpdateTextAlignment();
             }
 
             base.OnElementChanged(e);
@@ -68,7 +70,10 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
                 UpdateBorder();
             else if (e.PropertyName == Button.ImageProperty.PropertyName || e.PropertyName == Button.ContentLayoutProperty.PropertyName)
                 UpdateContent();
-        }
+			else if (e.PropertyName == Button.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Button.VerticalTextAlignmentProperty.PropertyName ||
+					 e.PropertyName == VisualElement.FlowDirectionProperty.PropertyName)
+				UpdateTextAlignment();
+		}
 
         protected override void UpdateBackgroundColor()
         {
@@ -136,7 +141,34 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
             }
         }
 
-        private void UpdateBorder()
+
+		private void UpdateTextAlignment()
+		{
+			if (Element == null || Control == null)
+				return;
+
+			var hAlignmentValue = GetAlignmentValue(Element.HorizontalTextAlignment, ((IVisualElementController)Element).EffectiveFlowDirection);
+			var vAlignmentValue = GetAlignmentValue(Element.VerticalTextAlignment);
+
+			Control.SetAlignment(hAlignmentValue, vAlignmentValue);
+		}
+
+		private float GetAlignmentValue(TextAlignment alignment, EffectiveFlowDirection flowDirection = default(EffectiveFlowDirection))
+		{
+			var isLtr = flowDirection.IsLeftToRight();
+
+			switch (alignment)
+			{
+				case TextAlignment.Start:
+					return isLtr ?  AlignStart : AlignEnd;
+				case TextAlignment.End:
+					return isLtr ? AlignEnd : AlignStart;
+				default:
+					return AlignCenter;
+			}
+		}
+
+		private void UpdateBorder()
         {
             var borderWidth = Element.BorderWidth < 0
                        ? DefaultBorderWidth

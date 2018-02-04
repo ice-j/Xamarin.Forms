@@ -51,5 +51,33 @@ namespace Xamarin.Forms.Platform.WPF
 					return HorizontalAlignment.Stretch;
 			}
 		}
+
+
+		internal static VerticalAlignment ToNativeVerticalAlignment(this TextAlignment alignment)
+		{
+			switch (alignment)
+			{
+				case TextAlignment.Center:
+					return VerticalAlignment.Center;
+				case TextAlignment.End:
+					return VerticalAlignment.Bottom;
+				default:
+					return VerticalAlignment.Top;
+			}
+		}
+
+		internal static HorizontalAlignment ToNativeHorizontalAlignment(this TextAlignment alignment, EffectiveFlowDirection flowDirection = default(EffectiveFlowDirection))
+		{
+			var isLtr = flowDirection.IsLeftToRight();
+			switch (alignment)
+			{
+				case TextAlignment.Start:
+					return isLtr ? HorizontalAlignment.Left : HorizontalAlignment.Right;
+				case TextAlignment.End:
+					return isLtr ? HorizontalAlignment.Right : HorizontalAlignment.Left;
+				default:
+					return HorizontalAlignment.Center;
+			}
+		}
 	}
 }

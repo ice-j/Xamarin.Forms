@@ -226,6 +226,15 @@ namespace Xamarin.Forms.CustomAttributes
 			BorderColor,
 			BorderRadius,
 			Image,
+			HorizontalTextAlignmentStart,
+			HorizontalTextAlignmentCenter,
+			HorizontalTextAlignmentEnd,
+			RTLHorizontalTextAlignmentStart,
+			RTLHorizontalTextAlignmentCenter,
+			RTLHorizontalTextAlignmentEnd,
+			VerticalTextAlignmentStart,
+			VerticalTextAlignmentCenter,
+			VerticalTextAlignmentEnd
 		}
 
 		public enum VisualElement

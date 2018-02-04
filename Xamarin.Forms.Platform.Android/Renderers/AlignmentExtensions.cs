@@ -18,16 +18,17 @@ namespace Xamarin.Forms.Platform.Android
 			}
 		}
 
-		internal static GravityFlags ToHorizontalGravityFlags(this TextAlignment alignment)
+		internal static GravityFlags ToHorizontalGravityFlags(this TextAlignment alignment, EffectiveFlowDirection flowDirection = default(EffectiveFlowDirection))
 		{
+			var isLtr = flowDirection.IsLeftToRight();
 			switch (alignment)
 			{
 				case TextAlignment.Center:
 					return GravityFlags.CenterHorizontal;
 				case TextAlignment.End:
-					return GravityFlags.End;
+					return isLtr ? GravityFlags.End : GravityFlags.Start;
 				default:
-					return GravityFlags.Start;
+					return isLtr ? GravityFlags.Start : GravityFlags.End;
 			}
 		}
 
